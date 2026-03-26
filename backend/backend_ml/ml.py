@@ -7,6 +7,7 @@ import torch
 import requests
 from io import BytesIO
 import numpy as np
+import base64
 
 # Load model and processor
 model_name = "prithivMLmods/Hand-Gesture-19"
@@ -24,41 +25,36 @@ def hand_gesture_classification(image):
         probs = torch.nn.functional.softmax(logits, dim=1).squeeze().tolist()
     
     labels = {
-        "0": "call", 
+        "0": "y", 
         "1": "dislike", 
-        "2": "fist", 
+        "2": "a", 
         "3": "four", 
         "4": "like", 
         "5": "mute", 
         "6": "no_gesture", 
-        "7": "ok", 
-        "8": "one", 
+        "7": "c", 
+        "8": "d", 
         "9": "palm", 
-        "10": "peace", 
+        "10": "k", 
         "11": "peace_inverted", 
         "12": "rock", 
-        "13": "stop", 
+        "13": "s", 
         "14": "stop_inverted", 
-        "15": "three", 
+        "15": "w", 
         "16": "three2", 
-        "17": "two_up", 
+        "17": "h", 
         "18": "two_up_inverted"
     }
     predictions = {labels[str(i)]: round(probs[i], 3) for i in range(len(probs))}
     
     return predictions
 
-def read_image_url(image_url):
-    response = requests.get(image_url)
-    image_data = np.asarray(Image.open(BytesIO(response.content)))
-    return image_data
-
-def gesture_from_url(image_url):
-    return hand_gesture_classification(read_image_url(image_url))
-
-def get_gesture(image_url):
-    predictions = gesture_from_url(image_url)
+def sort_predictions(predictions):
     print(predictions)
     return list(sorted(list(predictions.items()), key = lambda x:x[1], reverse=1))[0][0]
 
-print(get_gesture("https://www.shutterstock.com/image-photo/dislike-hand-sign-closeup-unrecognizable-260nw-2183295151.jpg"))
+
+def from_base64_string(base64_string):
+    if "data:image" in base64_string:
+        base64_string = base64_string.split(",")[1]
+    return sort_predictions(hand_gesture_classification(np.asarray(Image.open(BytesIO(base64.b64decode(base64_string))))))

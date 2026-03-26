@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -18,12 +19,17 @@ body {
     padding: 0 20px;
 }
 
-/* Header & Nav */
+/* Header */
 header {
+    background: #fff;
     padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-nav {
+header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,7 +37,7 @@ nav {
 
 .logo {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .nav-links {
@@ -40,73 +46,120 @@ nav {
     gap: 25px;
 }
 
-.nav-links a {
+.nav-links li a {
     text-decoration: none;
     color: #555;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #000;
 }
 
 .menu-icon {
     font-size: 1.5rem;
     cursor: pointer;
+    display: none;
 }
 
-/* Hero Section */
-.hero {
-    text-align: center;
-    margin: 60px 0 40px;
-}
-
-.hero h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    max-width: 700px;
-    margin: 0 auto;
-    color: #666;
-}
-
-/* Video & Translation Boxes */
-.placeholder-box {
-    background-color: #c4c4c4;
-    border-radius: 25px;
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-.camera-view {
-    height: 350px;
+/* Cards */
+.cards {
     display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 80px;
+    margin: 80px 0;
+    flex-wrap: wrap;
 }
 
-.icon {
-    font-size: 3rem;
-    opacity: 0.6;
+.card {
+    background: #c4c4c4;
+    width: 320px;
+    border-radius: 25px;
+    text-align: center;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.translation-section h2 {
+.card h3 {
     font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-.translation-output {
-    height: 200px;
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.4;
 }
 
-.info-box {
-    height: 120px;
-}
-
-/* Footer */
-footer {
-    background-color: #000;
+/* Card Buttons */
+.card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 140px;
+    height: 45px;
+    background: #000;
     color: #fff;
-    padding: 60px 0;
-    margin-top: 50px;
+    text-decoration: none;
+    border-radius: 30px;
+    margin: 0 auto;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.card-btn i {
+    font-size: 1.2rem;
+}
+
+.card-btn:hover {
+    background: #333;
+}
+
+/* Mission Section */
+.mission {
+    background: #c4c4c4;
+    margin: 40px 0;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.mission h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.mission p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* About Us Section */
+.clause {
+    background: #b0b0b0;
+    margin: 40px 0;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.clause h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.clause p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Footer (NOW MATCHES HEADER STYLE) */
+footer {
+    background-color: #fff;
+    color: #333;
+    padding: 40px 0;
+    border-top: 1px solid #ddd;
 }
 
 .footer-content {
@@ -130,16 +183,41 @@ footer {
     margin-top: 10px;
 }
 
-.dot {
-    height: 35px;
-    width: 35px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: inline-block;
+.social-icons a {
+    color: #555;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
+.social-icons a:hover {
+    color: #000;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .nav-links {
-        display: none; 
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .cards {
+        flex-direction: column;
+        gap: 40px;
+        margin: 40px 0;
+    }
+
+    .mission, .clause {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
     }
 }

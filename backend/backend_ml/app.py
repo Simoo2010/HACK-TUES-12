@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 #     return jsonify({"gesture":get_gesture(image_url)}), 200
 
-@app.post("/analize-frame")
+@app.post("/analyze-frame")
 def analyze():
     data = request.json["image"]
     return jsonify({"text":"hello"})

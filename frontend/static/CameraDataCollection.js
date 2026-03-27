@@ -29,6 +29,10 @@ function captureFrame() {
 };
 
 async function sendFrameToBackend() {
+  const camera_status_value=document.getElementById("camera_status").textContent;
+  if(camera_status_value=="camera_off"){
+    return ;
+  }
   const frame = captureFrame();
   console.log();
   const { SERVER_GESTURE_URL } = getConfig();

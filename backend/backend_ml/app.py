@@ -1,6 +1,10 @@
 from ml import from_base64_string
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 

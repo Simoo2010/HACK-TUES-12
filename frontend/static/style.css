@@ -394,3 +394,16 @@ footer {
             text-align: center;
         }
     }
+
+.image_logo{
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.logo {
+    display: flex;
+    align-items: center; 
+    gap: 10px;           
+}

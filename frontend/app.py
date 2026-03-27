@@ -15,5 +15,9 @@ def send_report(path):
     # Using request args for path will expose you to directory traversal attacks
     return send_from_directory('static', path)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return redirect(url_for('redirect_controller'))
+
 if __name__ == "__main__":
     app.run(debug=True)
